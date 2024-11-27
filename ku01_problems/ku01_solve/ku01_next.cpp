@@ -15,6 +15,7 @@ int main(){
     int n, cnt, _max = -1;
     int arr[100100];
     cin >> n;
+
     for(int i = 1 ; i<=n;i++) cin >> arr[i];
     for(int i = 1; i <= n ; i++){
         if(tb[i] == 1) continue;

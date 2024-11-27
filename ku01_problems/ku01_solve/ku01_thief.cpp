@@ -14,6 +14,7 @@ int sending(int pos, int cnt){
     return sending(nextpos(pos), cnt+1);
 }
 
+
 int main(){
     cin >> n >> k >> t;
     cout << sending(nextpos(1), 0)+1;
