@@ -50,14 +50,42 @@ int main(){
         h2 -= b1;
         b1 = 0;
     }
-
-
-    int overflow = 0;
-    cout << h1 << " " << h2 << " " << b1 << " " << b2 << endl;
-    cout << hb1 << " " << hb2 << " " << diff;
-    sum = hb1 + hb2 + diff;
-    int bf = 0;
-    while(sum < )
-
+    
+    int ans = 0;
+    while(hb1 + hb2 > x && hb1 > 0 && hb2 > 0 && diff < y){
+        if(diff+2 > y){
+            if(h1 > 0){
+                hb2--;
+                h1--;
+                h2++;
+            }
+            else if(b1 > 0){
+                hb2--;
+                b2++;
+                b1--;
+            }
+            else if(h2 > 0){
+                hb1--;
+                h2--;
+                h1++;
+            }
+            else if(b2 > 0){
+                hb1--;
+                b2--;
+                b1++;
+            }
+            diff+=1;
+            break;
+        }
+        hb1--;
+        hb2--;
+        diff+=2;
+        sum = hb1 + hb2 + diff;
+        // cout << "sum: " << sum << 10endl;
+    }
+    // printf("%d %d %d %d\n",h1,h2,b1,b2);
+    sum = min(hb1+hb2,x)+ min(diff + min(h1,b2) + min(h2,b1),y);
+    // cout << hb1 << " " << hb2 << " " << diff << endl;
+    cout << sum;
     return 0;
 }

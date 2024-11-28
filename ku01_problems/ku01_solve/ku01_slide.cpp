@@ -12,7 +12,6 @@ int main(){
             if(arr[j] < arr[i]) cnt++;
         }
     }
-
     cout << cnt;
     return 0;
 }
