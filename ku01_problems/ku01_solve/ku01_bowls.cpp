@@ -1,6 +1,7 @@
 #include<iostream>
 using namespace std;
 
+// O(n)
 int main(){
     int number[310];
     for(int i = 0; i < 310; i++) number[i] = 0;

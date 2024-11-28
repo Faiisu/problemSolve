@@ -2,6 +2,8 @@
 using namespace std;
 int n, k, t;
 
+//O(n)
+
 int nextpos(int pos){
     int nextpos = pos+k;
     if(nextpos > n) nextpos -= n;
@@ -13,7 +15,6 @@ int sending(int pos, int cnt){
     if(pos == 1) return cnt;
     return sending(nextpos(pos), cnt+1);
 }
-
 
 int main(){
     cin >> n >> k >> t;

@@ -1,6 +1,8 @@
 #include<iostream>
 using namespace std;
 
+
+// O(NlogN)
 int main(){
     int n, arr[310], cnt=0;
     cin >> n;
