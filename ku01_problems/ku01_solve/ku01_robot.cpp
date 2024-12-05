@@ -1,12 +1,13 @@
 #include<iostream>
 using namespace std;
 
+//not pass all task
 int main(){
     ios::sync_with_stdio(false);
     cin.tie(NULL);
-
+    
     int h1,h2,b1,b2;
-    int hb1, hb2, diff;
+    int hb1, hb2, diff=0;
     int x, y, sum;
 
     cin >> h1 >> h2 >> b1 >> b2;
@@ -33,7 +34,7 @@ int main(){
         b2 -= h2;
         h2 = 0;
     }
-    diff = min(h1,b2) + min(h2,b1);
+    diff += min(h1,b2) + min(h2,b1);
     if(h1 < b2){
         b2 -= h1;
         h1 = 0;
@@ -50,10 +51,14 @@ int main(){
         h2 -= b1;
         b1 = 0;
     }
+    printf("%d %d\n",hb1,hb2);
     
     int ans = 0;
-    while(hb1 + hb2 > x && hb1 > 0 && hb2 > 0 && diff < y){
-        if(diff+2 > y){
+    while(hb1 + hb2 > x && hb1 > 0 && hb2 > 0){
+        hb1--;
+        hb2--;
+        diff+=2;
+        if(diff > y){
             if(h1 > 0){
                 hb2--;
                 h1--;
@@ -77,13 +82,9 @@ int main(){
             diff+=1;
             break;
         }
-        hb1--;
-        hb2--;
-        diff+=2;
         sum = hb1 + hb2 + diff;
         // cout << "sum: " << sum << 10endl;
     }
-    // printf("%d %d %d %d\n",h1,h2,b1,b2);
     sum = min(hb1+hb2,x)+ min(diff + min(h1,b2) + min(h2,b1),y);
     // cout << hb1 << " " << hb2 << " " << diff << endl;
     cout << sum;

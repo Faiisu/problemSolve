@@ -20,6 +20,5 @@ int main(){
         if(diff * k >= arr[i]) cnt++;
     }
     cout << n-cnt;
-
     return 0;
 }
