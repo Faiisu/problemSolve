@@ -8,7 +8,8 @@ int main(){
     cin.tie(NULL);
 
     string n;
-    while(cin >> n){
+    while(getline(cin, n)){
+        if(n.empty()) break;
         list<char> output;
         auto ite = output.begin();
         for(char c : n){
@@ -17,6 +18,7 @@ int main(){
             else output.insert(ite, c);
         }
         for(auto c = output.begin() ; c != output.end(); c++) cout << *c;
+        cout << "\n";
     }
     return 0;
 }
