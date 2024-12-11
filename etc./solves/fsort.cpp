@@ -9,7 +9,7 @@ int main(){
     cin >> n;
     while(n--){
         cin >> inp;
-        cnt[inp]++;
+        
     }
     for(int i = 1; i <= 100000 ; i++){
         if(cnt[i] != 0){
