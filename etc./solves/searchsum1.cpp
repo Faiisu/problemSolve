@@ -2,18 +2,28 @@
 #include<map>
 using namespace std;
 
+typedef long long ll;
 map<int,int> books;
 
 int main(){
-    int n, k, input;
+    ll n, k, input;
     cin >> n >> k;
+    ll sum = 0;
     for(int i = 1 ; i <= n ; i++){
         cin >> input;
-        books[i] = input;
+        sum += input;
+        books[sum] = i;
     }
-    auto ite = books.upper_bound(50);
-    if(ite != books.end()) cout << "not found";
-    cout << ite->first << " ";
+    while(k--){
+        cin >> input;
+        if(input < books.begin()->first){
+            cout << "0\n";
+            continue;
+        }
 
+        auto ite = books.upper_bound(input);
+        ite--;
+        cout << ite->second << "\n";
+    }
     return 0;
 }

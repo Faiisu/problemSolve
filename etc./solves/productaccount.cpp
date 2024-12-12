@@ -43,6 +43,5 @@ int main(){
         else if(cmd == 2) show_product();
         else del_product();
     }
-
     return 0;
 }
