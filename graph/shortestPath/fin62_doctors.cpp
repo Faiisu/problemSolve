@@ -64,7 +64,7 @@ int main(){
 
     int total = 0;
     for(int i = 2 ; i <= n ; i++){
-        total += p[i] > i? i * dis[i]: p[i] * dis[i];
+        total += p[i] > l? l * dis[i]: p[i] * dis[i];
     }
     cout << total;
     return 0;

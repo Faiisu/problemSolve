@@ -1,10 +1,14 @@
 #include<iostream>
 #include<vector>
-#include<list>
-#include<set>
+using namespace std;
 
-set test; wtf
+vector<int> a;
+
+int f(int n){
+    if(n == 0) return 0;
+    cout << f(n-1);
+}
+
 int main(){
-
-    return 0;
+    f(50);
 }

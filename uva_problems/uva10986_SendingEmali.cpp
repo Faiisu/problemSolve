@@ -1,75 +1,73 @@
 #include<iostream>
-#include<vector>
 #include<set>
+#include<vector>
 #include<climits>
 using namespace std;
 
-int n, m, s, t;
-vector<int> adj[20010],weights[20010];
+vector<int> adj[20010], lat[20010];
 int deg[20010];
 
-
+int n,m,s,t;
 void read_input(){
     cin >> n >> m >> s >> t;
     for(int i = 0 ; i < m ; i++){
-        int st, end, lat;
-        cin >> st >> end >> lat;
-        adj[st].push_back(end);
-        adj[end].push_back(st);
-        weights[st].push_back(lat);
-        weights[end].push_back(lat);
-        deg[st]++;
-        deg[end]++;
+        int a, b, c;
+        cin >> a >> b >> c;
+        adj[a].push_back(b);
+        adj[b].push_back(a);
+        lat[a].push_back(c);
+        lat[b].push_back(c);
+        deg[a]++;
+        deg[b]++;
     }
 }
 
-bool tb[20010];
+set<pair<int,int> > q;
 int dis[20010];
-set< pair<int,int> > q;
+bool tb[20010];
+
 void dijkstra(int st){
-    for(int i = 0 ; i <= n ; i++){
-        dis[i] = INT_MAX;
+    for(int i = 0 ; i<=n;i++){
         tb[i] = false;
+        dis[i] = INT_MAX;
     }
-    dis[st] = 0;
     q.insert(make_pair(0,st));
+    dis[st] = 0;
 
     while(!q.empty()){
-        auto ad_now = *q.begin();
+        auto p_now = *q.begin();
+        int now = p_now.second;
         q.erase(q.begin());
-        int now = ad_now.second;
         if(tb[now]) continue;
         tb[now] = true;
 
         for(int i = 0 ; i < deg[now] ; i++){
             int next = adj[now][i];
-            int new_dis = dis[now] + weights[now][i];
+            int new_dis = dis[now] + lat[now][i];
             if(dis[next] > new_dis){
                 dis[next] = new_dis;
                 q.insert(make_pair(dis[next],next));
             }
-
         }
-
     }
 }
 
 int main(){
-    int testcase;
-    cin >> testcase;
-    for(int i = 1; i <= testcase ;i++){
+    int tc;
+    cin >> tc;
+    for(int i = 1 ; i<=tc;i++){
         read_input();
         dijkstra(s);
 
-        cout << "Case #" << i << ": ";
-        if(dis[t] != INT_MAX) cout << dis[t];
-        else cout << "unreachable";
-        cout << "\n";
-        for(int i = 0 ; i < n; i++){
-            adj[i].clear();
-            deg[i] = 0;
+        for(int ii = 0 ; ii <= n ; ii++){
+            deg[ii] = 0;
+            adj[ii].clear();
+            lat[ii].clear();
         }
+        
+        printf("Case #%d: ", i);
+        if(dis[t] != INT_MAX) cout << dis[t] << "\n";
+        else cout << "unreachable\n";
     }
-
     return 0;
 }
