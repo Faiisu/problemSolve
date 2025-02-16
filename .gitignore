@@ -4,6 +4,7 @@
 # unIgnore
 !*.cpp
 !*.pdf
+!*/
 
 # Ensure Git tracks .gitignore and CMakeLists.txt
 !.gitignore
