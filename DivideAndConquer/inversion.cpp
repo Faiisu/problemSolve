@@ -43,16 +43,14 @@ long long countInversions(int arr[], int n) {
 
 int main() {
     int n;
-    cout << "Enter number of elements: ";
     cin >> n;
 
     int arr[n];
-    cout << "Enter array elements: ";
     for (int i = 0; i < n; i++) {
         cin >> arr[i];
     }
 
-    cout << "Number of inversions: " << countInversions(arr, n) << endl;
+    cout << countInversions(arr, n) << endl;
 
     return 0;
 }
