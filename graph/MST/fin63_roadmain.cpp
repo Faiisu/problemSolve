@@ -5,7 +5,8 @@ using namespace std;
 
 int n, m;
 int parents[100010], ranks[100010], mins[100010];
-map<int, vector<pair<int,int> > > brokens; 
+map<int, vector<pair<int,int> > > brokens;
+
 
 int find(int N){
     if(parents[N] != N){
