@@ -1,69 +1,41 @@
 #include<iostream>
 #include<map>
 #include<set>
+
 using namespace std;
-
 int n;
-map<int, pair<int, pair<int, int> > > times;
 
-pair<int, int> main_range, sub_range;
-set<int> main_set, sub_set;
-int mainW = 0, subW = 0;
-
+map<int, set< pair<int, pair<int,int> > > > times;
+//y, weight, x, i
+set< pair<int, pair<int ,pair< int, int> > > > totals;
+//weight, size, x, y
 int main(){
     cin >> n;
-
-    for(int i = 1; i <= n ; i++){
-        int x, y , w;
+    for(int i = 1 ; i <= n ; i++){
+        int x, y, w;
         cin >> x >> y >> w;
-
-        if(times[y].second.second < w){
-            times[y].second.first = x;
-            times[y].second.second = w;
-            times[y].first = i;
-        }
+        times[y].insert(make_pair(w, make_pair(x,i)));
     }
 
-    for(auto ite: times){
+    for(auto ite : times){
         int y = ite.first;
-        int x = ite.second.second.first;
-        int weight = ite.second.second.second;
-        int i = ite.second.first;
+        for(auto rit = ite.second.rbegin(); rit!= ite.second.rend(); ++rit){
+            int w = rit->first;
+            int x = rit->second.first;
+            int i = rit->second.second;
+            
+            for(auto total = totals.rbegin(); total!=totals.rend(); ++total){
+                int t_w = total->first;
+                int t_size = total->second.first;
+                int t_x = total->second.second.first;
+                int t_y = total->second.second.second;
 
-        if(weight > mainW){
-            sub_range = main_range;
-            sub_set = main_set;
-            subW = mainW;
-
-            main_range.first = x;
-            main_range.second = y;
-            mainW = weight;
-            main_set.clear();
-            main_set.insert(i);
-        }
-        else if(subW + weight > mainW && x >= sub_range.first){
-            subW += weight;
-            sub_range.second = y;
-            sub_set.insert(i);
-
-            pair<int, int> tmp_range = main_range;
-            set<int> tmp_set = main_set;
-            int tmpW = mainW;
-
-            main_range = sub_range;
-            mainW = subW;
-            main_set = sub_set;
-
-            sub_set = tmp_set;
-            subW = tmpW;
-            sub_range = tmp_range;
-
+                if(x >= t_x){
+                    
+                }
+            }
         }
 
     }
-    cout << mainW << "\n";
-    cout << main_set.size() << "\n";
-    // cout << main_range.first << " " << main_range.second <<"\n";
-    for(auto i : main_set) cout << i << " ";
     return 0;
 }
