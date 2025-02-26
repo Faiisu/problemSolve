@@ -1,3 +1,6 @@
+/*  greatest sum in which the sequence of each
+    number is at least 1 order apart */
+
 #include<iostream>
 using namespace std;
 
