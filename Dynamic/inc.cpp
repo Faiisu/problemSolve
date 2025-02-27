@@ -1,43 +1,45 @@
-// longest increase subsequence
+//longest increase subsequence 
 #include<iostream>
-#include<vector>
+#include<set>
 
 using namespace std;
-int n;
+int numbers[1010][2];
+set<int> ans;
+int parent[1010];
+int longest[2] = {0,0};
 
-int arr[1010];
-vector< vector<int> > mems;
 int main(){
+    int n;
     cin >> n;
-    for(int i = 0; i<n; i++){
+    for(int r = 0 ; r < n ; r++){
         int inp;
         cin >> inp;
-        arr[i] = inp;
+        parent[r] = r;
+        numbers[r][0] = inp;
+        numbers[r][1] = 1;
 
-        bool inst = false;
-        
-        for(auto& ite: mems){
-            auto endp = ite.end();
-            endp--;
-            int h = *endp;
-            // cout << "H: " << h << " ";
-            if(inp > h){
-                ite.push_back(inp);
-                inst = true;
+        for(int i = 0; i < r; i++){
+            int num = numbers[i][0];
+            int s = numbers[i][1];
+            if(num < inp && s+1 >= numbers[r][1]){
+                numbers[r][1] = s+1;
+                parent[r] = i;
             }
         }
-        vector<int> newL;
-        newL.push_back(inp);
-        mems.push_back(newL);
+        if(numbers[r][1] > longest[1]){
+            longest[1] = numbers[r][1];
+            longest[0] = r;
+        }
     }
 
-    vector<int> ans;
-    for(auto list: mems){
-        if(list.size() > ans.size()) ans = list;
+    int i = longest[0];
+    while(parent[i] != i){
+        ans.insert(numbers[i][0]);
+        i = parent[i];
     }
+    ans.insert(numbers[i][0]);
 
-    cout << ans.size()<<"\n";
-    for(auto i : ans) cout << i << " ";
-
+    cout << longest[1] << "\n";
+    for(auto ite: ans) cout << ite << " ";
     return 0;
-} 
+}
