@@ -27,17 +27,17 @@ int main(){
             if(range > l){
                 cnt++;
                 pivot = num.first;
-                cout << "pivot:" << pivot<<"| ";
+                // cout << "pivot:" << pivot<<"| ";
             }
             else{
                 if((num.first-pivot)+locate[pivot] < num.second ){
                     pivot = num.first;
                 }
             }
-            cout << range << " ";
+            // cout << range << " ";
         }
     }
-    // if(can == false) cout << -1;
-    // cout << cnt+1;
+    if(can == false) cout << -1;
+    else cout << cnt+1;
     return 0;
 }
